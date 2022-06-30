@@ -4,7 +4,7 @@
 <head>
 
   <link rel="icon" type="image/x-icon" href="/img/logo-icon.png">
-  <title>App name: Coding Project By Ieti Lolo</title>
+  <title>Hundo: Coding Project By Ieti Lolo</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
       <img class="header-logo" src="./img/logo-icon-white-color-braces.png" height="30px" alt="" srcset="">
-      <a class="navbar-brand" href="index.html"> App name</a>
+      <a class="navbar-brand" href="index.html"> Hundo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
             <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" target="_blank" href="contact.html">About</a>
+            <a class="nav-link" target="_blank" href="https://jeddycodes.netlify.app/">About</a>
           </li>
         </ul>
       </div>
@@ -50,22 +50,76 @@
   <!-- Main - content -->
   <main class="flex-shrink-0">
     <div class="container py-5 px-5 mt-5">
-      <h2 class="border-1 border-bottom border-dark">The Code for: App Name</h2>
+      <h2 class="border-1 border-bottom border-dark">The Code for Hundo</h2>
       <div class="row row-cols-1 row-cols-lg-2">
         <div class="col col-lg-8">
           <pre class="line-numbers">
             <code class="language-javascript">
-              // Call hello
-              function HelloWorld(){
-                alert("Hello, world!");
+              // Get values form
+              function getValues()
+              {
+                // Get Values
+                let startValue = parseInt(document.querySelector("#startValue").value);
+                let endValue = parseInt(document.querySelector("#endValue").value);
+                
+                // Call Generate Numbers
+                let numbers = generateNumbers(startValue, endValue);
+                
+                // Call Display Results
+                displayResults(numbers);
               }
+                
+              // Generate numbers from start value to end value
+              function generateNumbers(startValue, endValue)
+              {
+                let numbers = [];
+                for (let index = startValue; index &lt;= endValue; index++)
+                {
+                  numbers.push(index);
+                }
+                return numbers;
+              }
+              // Display numbers and make even bold
+              function displayResults(numbers)
+              {
+                let templateRows="" ;
+                for (let i=0; i &lt; numbers.length; i++)
+                {
+                  let number=numbers[i];
+                  if (number % 2==0)
+                  {
+                    templateRows +=`&lt;tr&gt;&lt;td&gt;&lt;strong&gt;${number}&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;`;
+                  } else {
+                    templateRows += `&lt;tr&gt;&lt;td&gt;${number}&lt;/td&gt;&lt;/tr&gt;`;
+                  }
+                }
+                  document.getElementById("results").innerHTML = templateRows;
+                }
             </code>
           </pre>
         </div>
         <div class="col col-lg-4">
-          <p>The Code is structured in one function.</p>
-          <h5>Hello, World!</h5>
-          <p>Hello world is a function that displays a message with "Hellow, World!"</p>
+          <h5>Summary</h5>
+          <p>I use functions to encapsulate each section. Our program begins by listening for the click event on button
+            then calling <code>getValues()</code>. We first grab the start & end values entered by user and
+            store to a variable. To ensure values are type Integer(int) we use the <code>parseInt()</code> to convert
+            any possible value supplied to a int or NaN.</p>
+
+          <p>We then pass our start & end variables as arguments through to our <code>generateNumbers()</code>
+            function. We then store the returned array of numbers in a variable and pass as a argument to the
+            <code>displayResults()</code> function.
+          </p>
+
+          <h5>Function explanation</h5>
+
+          <p><strong><code>generateNumbers()</code></strong> - Takes in startInt & endInt as arguments and uses a
+            for-loop to dynamically push current Index to numbers array. Then returns numbers variable containing array
+            of numbers.</p>
+
+          <p><strong><code>displayResults()</code></strong> - Takes a array of number as arguments. Then a HTML table
+            row is created as a string and assigned to a variable to serve as a template. A For-loop is then used to
+            iterate over each number and insert into the template variable using string interpolation.</p>
+
         </div>
       </div>
     </div>
